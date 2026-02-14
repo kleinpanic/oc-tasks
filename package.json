@@ -1,0 +1,28 @@
+{
+  "name": "oc-tasks",
+  "version": "1.0.0",
+  "description": "Unified task management CLI for OpenClaw",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "oc-tasks": "./bin/oc-tasks"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.8.1",
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^13.1.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.12.0",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.7.3"
+  }
+}

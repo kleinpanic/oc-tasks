@@ -1,0 +1,36 @@
+import Database from 'better-sqlite3';
+import type { Task, CreateTaskInput, UpdateTaskInput, TaskStatus } from './models/task.js';
+export declare function getDb(): Database.Database;
+export declare function initSchema(db: Database.Database): void;
+export declare function seedDefaultSLAPolicies(db: Database.Database): void;
+export declare function createTask(db: Database.Database, input: CreateTaskInput, actor?: string): Task;
+export declare function getTask(db: Database.Database, id: string): Task | null;
+export declare function findTaskBySubstring(db: Database.Database, substr: string): Task | null;
+export interface ListTasksOptions {
+    status?: string[];
+    priority?: string;
+    list?: string;
+    agent?: string;
+    tag?: string;
+    project?: string;
+    backburnered?: boolean;
+    parentId?: string;
+    sort?: 'priority' | 'due' | 'created' | 'updated';
+    limit?: number;
+}
+export declare function listTasks(db: Database.Database, opts?: ListTasksOptions): Task[];
+export declare function updateTask(db: Database.Database, id: string, updates: UpdateTaskInput, actor?: string): Task | null;
+export declare function moveTask(db: Database.Database, id: string, status: TaskStatus, actor?: string): Task | null;
+export declare function completeTask(db: Database.Database, id: string, actor?: string): Task | null;
+export declare function blockTask(db: Database.Database, id: string, reason: string, actor?: string): Task | null;
+export declare function unblockTask(db: Database.Database, id: string, actor?: string): Task | null;
+export declare function deleteTask(db: Database.Database, id: string): boolean;
+export declare function searchTasks(db: Database.Database, pattern: string): Task[];
+export declare function getOverdueTasks(db: Database.Database): Task[];
+export declare function getNextTask(db: Database.Database, agent?: string): Task | null;
+export declare function getTaskActivity(db: Database.Database, taskId: string): any[];
+export declare function startTimer(db: Database.Database, taskId: string, agent?: string): string;
+export declare function stopTimer(db: Database.Database, timerId?: string, taskId?: string): any | null;
+export declare function getRunningTimers(db: Database.Database): any[];
+export declare function getTimerReport(db: Database.Database, days?: number): any[];
+export declare function getStats(db: Database.Database, days?: number): any;
